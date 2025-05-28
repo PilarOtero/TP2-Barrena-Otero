@@ -7,6 +7,7 @@ Pokedex::Pokedex(Pokemon& pokemon, const PokemonInfo& info) {
 
 Pokedex::Pokedex(Pokemon& pokemon, const PokemonInfo& info, const string& nombreArchivo) {
     pokedexMap[pokemon] = info;
+    //aca habria que serializar
 }
 
 //Getters
