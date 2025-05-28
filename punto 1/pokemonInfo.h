@@ -11,7 +11,7 @@ class PokemonInfo {
     private:
         string tipo, descripcion;
         map<string, int> ataquesDisponiblesPorNivel;
-        vector<int> experienciaProximoNivel;
+        vector<int> experienciaProximoNivel; //o set
     public:
         //Constructor
         PokemonInfo(const string& tipoPokemon, const string& descripcionPokemon, map<string, int>& ataquesPorNivel, vector<int>& experienciaNivel);

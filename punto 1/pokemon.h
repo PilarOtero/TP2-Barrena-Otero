@@ -19,5 +19,17 @@ class Pokemon {
         //Setters
         void setExperiencia(int nuevaExperiencia);
 
-
+        //Hash function para Pokemon
+        bool operator==(const Pokemon& other) const {
+            return nombre == other.nombre;
+        }
 };
+
+class PokemonHash {
+    public:
+        size_t operator()(const Pokemon& pokemon) const {
+            return hash<string>()(pokemon.getNombre());
+        }
+};
+
+

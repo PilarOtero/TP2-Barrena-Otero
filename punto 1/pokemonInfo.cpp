@@ -12,5 +12,5 @@ vector<int> PokemonInfo::getExperienciaProximoNivel() const { return experiencia
 // Setters
 //HACERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 void PokemonInfo:: setTipo(string& nuevoTipo) {
-    return;
+    tipo = nuevoTipo;
 }
