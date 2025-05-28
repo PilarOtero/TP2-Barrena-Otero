@@ -10,7 +10,6 @@ map<string, int> PokemonInfo::getAtaquesDisponiblesPorNivel() const { return ata
 vector<int> PokemonInfo::getExperienciaProximoNivel() const { return experienciaProximoNivel; }
 
 // Setters
-//HACERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 void PokemonInfo:: setTipo(string& nuevoTipo) {
     tipo = nuevoTipo;
 }
