@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../PokemonInfo/pokemonInfo.h"
-#include "../Pokemon/pokemon.h"
+#include "pokemonInfo.h"
+#include "pokemon.h"
 #include <unordered_map>
 
 using namespace std;

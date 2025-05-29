@@ -1,4 +1,4 @@
-#include "pokemon.h"
+#include "../headers/pokemon.h"
 
 //Constructor mediante lista de inicialización
 Pokemon::Pokemon(string nombrePokemon, int experienciaPokemon): nombre(nombrePokemon), experiencia(experienciaPokemon) {};

@@ -1,4 +1,4 @@
-#include "pokemonInfo.h"
+#include "../headers/pokemonInfo.h"
 
 // Constructor mediante lista de inicialización
 PokemonInfo::PokemonInfo(const string& tipoPokemon, const string& descripcionPokemon, map<string, int>& ataquesPorNivel, vector<int>& experienciaNivel): tipo(tipoPokemon), descripcion(descripcionPokemon), ataquesDisponiblesPorNivel(ataquesPorNivel), experienciaProximoNivel(experienciaNivel) {};

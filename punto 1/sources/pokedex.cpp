@@ -1,4 +1,4 @@
-#include "pokedex.h"
+#include "../headers/pokedex.h"
 
 //Constructores
 Pokedex::Pokedex(Pokemon& pokemon, const PokemonInfo& info) {
