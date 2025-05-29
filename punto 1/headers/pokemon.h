@@ -23,6 +23,10 @@ class Pokemon {
         bool operator==(const Pokemon& other) const {
             return nombre == other.nombre;
         }
+
+        //Serializacion y deserializacion
+        void serializar(const string& nombreArchivo) const;   
+        void deserializar(const string& nombreArchivo);
 };
 
 class PokemonHash {

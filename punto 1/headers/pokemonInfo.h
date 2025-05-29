@@ -24,4 +24,8 @@ class PokemonInfo {
         //Setters
         void setTipo(string& nuevoTipo);
 
+        //Serializacion y deserializacion
+        void serializar(const string& nombreArchivo) const;   
+        void deserializar(const string& nombreArchivo);
+
 };

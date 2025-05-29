@@ -10,4 +10,4 @@ Pokedex::Pokedex(Pokemon& pokemon, const PokemonInfo& info, const string& nombre
     //aca habria que serializar
 }
 
-//Getters
+

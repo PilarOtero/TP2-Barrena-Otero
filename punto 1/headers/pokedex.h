@@ -14,17 +14,14 @@ class Pokedex {
         Pokedex(Pokemon& pokemon, const PokemonInfo& info);
         //Sobrecarga del constructor - pasando nombre de archivo de serialización
         Pokedex(Pokemon& pokemon, const PokemonInfo& info, const string& nombreArchivo);
-        
-        // Getters
-        Pokemon* getPokemon() const;
-        PokemonInfo getInfo() const;
-        
-        //Serializacion
+                
+        //Serializacion y deserializacion
         void serializar(const string& nombreArchivo) const;   
+        void deserializar(const string& nombreArchivo);
 
         void mostrar(Pokemon& pokemon) const;
         void mostrarTodos() const;
-};
+};      void agregarPokemon(const Pokemon& Nuevopokemon, const PokemonInfo& nuevoInfo);
 
 
 
