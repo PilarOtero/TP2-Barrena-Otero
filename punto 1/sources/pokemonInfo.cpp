@@ -19,7 +19,7 @@ void PokemonInfo:: setTipo(string& nuevoTipo) {
 void PokemonInfo::serializar(const string& path) const {
     ifstream out(path, ios:: binary);
     if (out.is_open()){
-        continue; // Implementar la lógica de serialización aquí
+        return; // Implementar la lógica de serialización aquí
         out.close();
     }
 }
