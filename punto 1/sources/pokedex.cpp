@@ -5,9 +5,9 @@ Pokedex::Pokedex(Pokemon& pokemon, const PokemonInfo& info) {
     pokedexMap[pokemon] = info;
 }
 
-Pokedex::Pokedex(Pokemon& pokemon, const PokemonInfo& info, const string& nombreArchivo) {
+Pokedex::Pokedex(Pokemon& pokemon, const PokemonInfo& info, ofstream& out) {
     pokedexMap[pokemon] = info;
-    serializar(nombreArchivo);
+    serializar(out);
 }
 
 //Metodo para mostrar la info del Pokemon
@@ -20,3 +20,33 @@ void Pokedex::mostrar(Pokemon& pokemon) const {
         cout << "Pokemon no encontrado en la Pokedex" << endl;
     }
 }
+
+//Aca habria que ver si el pokemon esta o no en el mapa
+void Pokedex:: agregarPokemon(Pokemon& NuevoPokemon, const PokemonInfo& nuevoinfo, ofstream& out) {
+    if (pokedexMap.find(NuevoPokemon) == pokedexMap.end()) {
+        pokedexMap.insert({NuevoPokemon, nuevoinfo});
+        serializar(out);
+    }
+    else {
+        cout << "El Pokemon ya pertenece a Pokedex" << endl;
+    }
+}
+
+//Serializacion
+void Pokedex:: serializar(ofstream& out) const {
+    size_t size = pokedexMap.size();
+    //Guardo el tamaño del mapa
+    out.write(reinterpret_cast<const char*>(&size), sizeof(size));
+    for (const auto& par: pokedexMap){
+        //Serializacion del Pokemon
+        par.first.serializar(out);
+        //Serializacion de la info
+        par.second.serializar(out);
+    }
+    out.close();
+}
+
+
+//Deserializacion
+
+

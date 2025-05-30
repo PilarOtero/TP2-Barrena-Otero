@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -11,7 +12,7 @@ class PokemonInfo {
     private:
         string tipo, descripcion;
         map<string, int> ataquesDisponiblesPorNivel;
-        vector<int> experienciaProximoNivel; //o set
+        vector<int> experienciaProximoNivel;
     public:
         //Constructor
         PokemonInfo(const string& tipoPokemon, const string& descripcionPokemon, map<string, int>& ataquesPorNivel, vector<int>& experienciaNivel);
@@ -28,5 +29,7 @@ class PokemonInfo {
         //Serializacion y deserializacion
         void serializar(ofstream& out) const;   
         void deserializar(ifstream& in);
-
+        
+        //Destructor
+        ~PokemonInfo() = default;
 };

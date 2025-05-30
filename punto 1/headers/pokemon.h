@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -27,6 +28,9 @@ class Pokemon {
         //Serializacion y deserializacion
         void serializar(ofstream& out) const;   
         void deserializar(ifstream& in);
+
+        //Destructor
+        ~Pokemon() = default;
 };
 
 class PokemonHash {

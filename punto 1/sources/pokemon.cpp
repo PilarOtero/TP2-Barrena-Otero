@@ -26,7 +26,6 @@ void Pokemon::serializar(ofstream& out) const {
     out.close();
 }
 
-
 //Deserializacion
 void Pokemon::deserializar(ifstream& in){
     size_t nombreSize;

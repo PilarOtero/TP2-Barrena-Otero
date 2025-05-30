@@ -4,6 +4,7 @@
 #include "pokemon.h"
 #include <unordered_map>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -14,15 +15,21 @@ class Pokedex {
         // Constructor
         Pokedex(Pokemon& pokemon, const PokemonInfo& info);
         //Sobrecarga del constructor - pasando nombre de archivo de serialización
-        Pokedex(Pokemon& pokemon, const PokemonInfo& info, const string& nombreArchivo);
-                
-        //Serializacion y deserializacion
-        void serializar(const string& nombreArchivo) const;   
-        void deserializar(const string& nombreArchivo);
-
+        Pokedex(Pokemon& pokemon, const PokemonInfo& info, ofstream& out);
+        
+        //Metodos
         void mostrar(Pokemon& pokemon) const;
         void mostrarTodos() const;
-};      void agregarPokemon(const Pokemon& Nuevopokemon, const PokemonInfo& nuevoInfo);
+        void agregarPokemon(Pokemon& Nuevopokemon, const PokemonInfo& nuevoInfo, ofstream& out);
+
+        //Serializacion y deserializacion
+        void serializar(ofstream& out) const;   
+        void deserializar(ifstream& in);
+
+        //Destructor
+        ~Pokedex() = default;
+};      
+
 
 
 
