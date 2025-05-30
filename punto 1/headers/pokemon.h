@@ -25,8 +25,8 @@ class Pokemon {
         }
 
         //Serializacion y deserializacion
-        void serializar(const string& nombreArchivo) const;   
-        void deserializar(const string& nombreArchivo);
+        void serializar(ofstream& out) const;   
+        void deserializar(ifstream& in);
 };
 
 class PokemonHash {

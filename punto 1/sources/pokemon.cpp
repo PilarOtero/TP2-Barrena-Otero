@@ -14,21 +14,28 @@ void Pokemon:: setExperiencia(int nuevaExperiencia) {
 }
 
 //Serializacion
-void Pokemon::serializar(const string& path) const {
-    ofstream out(path, ios::binary);
-    if (out.is_open()) {
-        out.write(reinterpret_cast<const char*>(&nombre), sizeof(nombre));
-        out.write(reinterpret_cast<const char*>(&experiencia), sizeof(experiencia));
-        out.close();
-    }
+void Pokemon::serializar(ofstream& out) const {
+    //Nombre
+    size_t nombreSize = nombre.size();
+    //Guarda el tamaño del nombre
+    out.write(reinterpret_cast<const char*>(&nombreSize), sizeof(nombreSize));
+    out.write(nombre.c_str(), nombreSize);
+    
+    //Experiencia
+    out.write(reinterpret_cast<const char*>(&experiencia), sizeof(experiencia));
+    out.close();
 }
 
+
 //Deserializacion
-void Pokemon::deserializar(const string& path){
-    ifstream in(path, ios:: binary);
-    if (in.is_open()){
-        in.read(reinterpret_cast<char*>(&nombre), sizeof(nombre));
-        in.read(reinterpret_cast<char*>(&experiencia), sizeof(experiencia));
-        in.close();
-    }
+void Pokemon::deserializar(ifstream& in){
+    size_t nombreSize;
+    //Nombre
+    in.read(reinterpret_cast<char*>(&nombreSize), sizeof(nombreSize));
+    nombre.resize(nombreSize); 
+    in.read(&nombre[0], nombreSize);
+    
+    //Experiencia
+    in.read(reinterpret_cast<char*>(&experiencia), sizeof(experiencia));
+    in.close();
 }

@@ -15,6 +15,7 @@ class PokemonInfo {
     public:
         //Constructor
         PokemonInfo(const string& tipoPokemon, const string& descripcionPokemon, map<string, int>& ataquesPorNivel, vector<int>& experienciaNivel);
+        
         //Getters
         string getTipo() const;
         string getDescripcion() const;
@@ -25,7 +26,7 @@ class PokemonInfo {
         void setTipo(string& nuevoTipo);
 
         //Serializacion y deserializacion
-        void serializar(const string& nombreArchivo) const;   
-        void deserializar(const string& nombreArchivo);
+        void serializar(ofstream& out) const;   
+        void deserializar(ifstream& in);
 
 };

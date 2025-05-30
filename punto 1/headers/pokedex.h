@@ -3,6 +3,7 @@
 #include "pokemonInfo.h"
 #include "pokemon.h"
 #include <unordered_map>
+#include <iostream>
 
 using namespace std;
 
