@@ -43,10 +43,21 @@ void Pokedex:: serializar(ofstream& out) const {
         //Serializacion de la info
         par.second.serializar(out);
     }
-    out.close();
 }
 
-
 //Deserializacion
+void Pokedex:: deserializar(ifstream& in){
+    size_t size;
+    in.read(reinterpret_cast<char*>(&size), sizeof(size));
+    for(size_t it = 0; it < size; ++it){
+        Pokemon poke("", 0);
+        PokemonInfo info;
 
-
+        //Deserializacion del Pokemon
+        poke.deserializar(in);
+        //Deserializacion de la info
+        infodeserializar(in);
+        //Agrego el Pokemon y su info al mapa
+        pokedexMap[poke] = info;
+    }
+}
