@@ -1,4 +1,4 @@
-#include "../headers/pokemonInfo.h"
+#include "../include/pokemonInfo.h"
 #include <fstream>
 
 // Constructor mediante lista de inicialización
@@ -79,7 +79,7 @@ void PokemonInfo:: deserializar(ifstream& in){
     }
     
     //Experiencia proximo nivel
-    size_t experienciaSize = experienciaProximoNivel.size();
+    size_t experienciaSize;
     in.read(reinterpret_cast<char*>(&experienciaSize), sizeof(experienciaSize));
     experienciaProximoNivel.resize(experienciaSize);
     in.read(reinterpret_cast<char*>(experienciaProximoNivel.data()), experienciaSize * sizeof(int));

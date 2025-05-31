@@ -1,25 +1,21 @@
-#include "../headers/pokedex.h"
+#include "../include/pokedex.h"
 
 //Constructores
 Pokedex::Pokedex() {};
 
-Pokedex::Pokedex(Pokemon& pokemon, const PokemonInfo& info) {
-    pokedexMap[pokemon] = info;
-}
-
-Pokedex::Pokedex(Pokemon& pokemon, const PokemonInfo& info, ofstream& out) {
-    pokedexMap[pokemon] = info;
-    serializar(out);
-}
+Pokedex::Pokedex(const string& path): archivo(path) {
+    ifstream in(archivo, ios::binary);
+        deserializar(in);
+};
 
 //Metodo para mostrar el nombre y tipo del Pokemon
 void Pokedex::mostrar(const Pokemon& pokemon) const {
     auto it = pokedexMap.find(pokemon);
     if (it != pokedexMap.end()) {
-        cout << "Pokemon(\"" << pokemon.getNombre() << "\", " << pokemon.getExperiencia() << ")" << endl;
+        cout << "NOMBRE -> " << pokemon.getNombre() << "\nEXPERIENCIA -> " << pokemon.getExperiencia() << endl;
     }
     else {
-        cout << "Pokemon no encontrado en la Pokedex." << endl;
+        cout << "Pokemon no encontrado..." << endl;
     }
 }
 
@@ -28,36 +24,36 @@ void Pokedex::mostrarInfo(const Pokemon& pokemon) const {
     auto it = pokedexMap.find(pokemon);
     if (it != pokedexMap.end()) {
         const PokemonInfo& info = it->second;
-        cout << "PokemonInfo(\"" << info.getTipo() << "\",\"" << info.getDescripcion() << "\"";
+        cout << "TIPO -> " << info.getTipo() << "\nDESCRIPCION -> " << info.getDescripcion() << "\n";
         
         const auto& ataques = info.getAtaquesDisponiblesPorNivel();
-        cout << ", {";
+        cout << "ATAQUES ";
         for (auto it = ataques.begin(); it!= ataques.end(); ++it) {
-            cout << "{\"" << it->first << "\",\"" << it->second << "}";
-            //Si no se trata del ultimo elemento del map, agrega la coma
-            if (next(it) != ataques.end()) cout << ",";
+            cout << "- "<< it->first << " -> Puntaje de daño: " << it->second << endl;
+
         }
-        cout << "}, {";
 
         const auto& experiencia = info.getExperienciaProximoNivel();
-        for (size_t i = 0; i < experiencia.size(); i++){
-            cout << experiencia[i];
-            if (i != experiencia.size() - 1) cout << ", ";
+        cout << "EXPERIENCIA PROXIMO NIVEL " << endl;
+        for (int i = 0; i < experiencia.size(); i++){
+            cout << "- " << experiencia[i] << endl;
         }
-        cout << "})" << endl;
-        }
+    }
 
     else {
-        cout << "Pokemon no encontrado en la Pokedex" << endl;
+        cout << "Pokemon no encontrado..." << endl;
     }
 }
 
 //Aca habria que ver si el pokemon esta o no en el mapa
-void Pokedex:: agregarPokemon(Pokemon& NuevoPokemon, const PokemonInfo& nuevoinfo, ofstream& out) {
+void Pokedex:: agregarPokemon(Pokemon& NuevoPokemon, const PokemonInfo& nuevoinfo) {
     if (pokedexMap.find(NuevoPokemon) == pokedexMap.end()) {
         pokedexMap.insert({NuevoPokemon, nuevoinfo});
-        serializar(out);
-    }
+        ofstream out(archivo, ios::binary);
+            serializar(out);
+            out.close();
+        }
+    
     else {
         cout << "El Pokemon ya pertenece a Pokedex" << endl;
     }
@@ -80,16 +76,16 @@ void Pokedex:: serializar(ofstream& out) const {
 void Pokedex:: deserializar(ifstream& in){
     size_t size;
     in.read(reinterpret_cast<char*>(&size), sizeof(size));
-    for(size_t it = 0; it < size; ++it){
-        Pokemon poke;
+    for(int i = 0; i < size; ++i){
+        Pokemon pokemon;
         PokemonInfo info;
 
         //Deserializacion del Pokemon
-        poke.deserializar(in);
+        pokemon.deserializar(in);
         //Deserializacion de la info
         info.deserializar(in);
         //Agrego el Pokemon y su info al mapa
-        pokedexMap[poke] = info;
+        pokedexMap[pokemon] = info;
     }
 }
 
@@ -100,12 +96,10 @@ void Pokedex::mostrarTodos() const {
         return;
     }
 
-    int it = 1;
     for (const auto& par:pokedexMap){
-        cout << "Caso " << it << ": ";
         const Pokemon& pokemon = par.first;
         mostrar(pokemon);
         mostrarInfo(pokemon);
-        it++;
+        cout << "---------------------------------------------------------------" << endl;
     }
 }

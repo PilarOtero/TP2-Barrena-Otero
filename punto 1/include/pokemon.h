@@ -34,7 +34,7 @@ class Pokemon {
         ~Pokemon() = default;
 };
 
-class PokemonHash {
+struct PokemonHash {
     public:
         size_t operator()(const Pokemon& pokemon) const {
             return hash<string>()(pokemon.getNombre());

@@ -1,4 +1,4 @@
-#include "../headers/pokedex.h"
+#include "../include/pokedex.h"
 
 using namespace std;
 
@@ -30,9 +30,9 @@ int main(){
     ofstream out("pokedexMapTest", ios:: binary);
 
     //Agregado de los Pokemones con su informacion al mapa Pokedex
-    pokedexMap1.agregarPokemon(squirtle, squirtleInfo, out);
-    pokedexMap1.agregarPokemon(bulbasaur, bulbasaurInfo, out);
-    pokedexMap1.agregarPokemon(charmander, charmanderInfo, out);
+    pokedexMap1.agregarPokemon(squirtle, squirtleInfo);
+    pokedexMap1.agregarPokemon(bulbasaur, bulbasaurInfo);
+    pokedexMap1.agregarPokemon(charmander, charmanderInfo);
 
     //Serializacion
     if (out.is_open()){
@@ -47,6 +47,6 @@ int main(){
     if (in.is_open()){
         pokedexCargada.deserializar(in);
         in.close();
+        pokedexCargada.mostrarTodos();
     }
-    pokedexCargada.mostrarTodos();
 }

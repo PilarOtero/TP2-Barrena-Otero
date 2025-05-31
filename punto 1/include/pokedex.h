@@ -11,18 +11,18 @@ using namespace std;
 class Pokedex {
     private:
         unordered_map<Pokemon, PokemonInfo, PokemonHash> pokedexMap;
+        string archivo;
     public:
         // Constructores
         Pokedex();
-        Pokedex(Pokemon& pokemon, const PokemonInfo& info);
         //Sobrecarga del constructor - pasando nombre de archivo de serialización
-        Pokedex(Pokemon& pokemon, const PokemonInfo& info, ofstream& out);
+        Pokedex(const string& path);
         
         //Metodos
         void mostrar(const Pokemon& pokemon) const;
         void mostrarInfo(const Pokemon& pokemon) const;
         void mostrarTodos() const;
-        void agregarPokemon(Pokemon& Nuevopokemon, const PokemonInfo& nuevoInfo, ofstream& out);
+        void agregarPokemon(Pokemon& Nuevopokemon, const PokemonInfo& nuevoInfo);
 
         //Serializacion y deserializacion
         void serializar(ofstream& out) const;   

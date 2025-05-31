@@ -1,4 +1,4 @@
-#include "../headers/pokemon.h"
+#include "../include/pokemon.h"
 #include <fstream>
 
 //Constructor 
