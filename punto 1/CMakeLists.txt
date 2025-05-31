@@ -8,7 +8,7 @@ project(PodekexProject)
 set(CMAKE_CXX_STANDARD 17)
 
 #Archivos fuente 
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/*.cpp" "example/*.cpp")
 
 #Creacion del ejecutable
 add_executable(pokedexProject ${SOURCES})
