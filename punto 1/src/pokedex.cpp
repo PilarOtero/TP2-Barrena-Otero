@@ -51,7 +51,6 @@ void Pokedex:: agregarPokemon(Pokemon& NuevoPokemon, const PokemonInfo& nuevoinf
         pokedexMap.insert({NuevoPokemon, nuevoinfo});
         ofstream out(archivo, ios::binary);
             serializar(out);
-            out.close();
         }
     
     else {
