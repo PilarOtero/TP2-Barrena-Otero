@@ -1,8 +1,10 @@
 #include "../headers/pokemon.h"
 #include <fstream>
 
+//Constructor 
+Pokemon::Pokemon() {};
 //Constructor mediante lista de inicialización
-Pokemon::Pokemon(string nombrePokemon, int experienciaPokemon): nombre(nombrePokemon), experiencia(experienciaPokemon) {};
+Pokemon::Pokemon(const string& nombrePoke, int experienciaPoke): nombre(nombrePoke), experiencia(experienciaPoke) {};
 
 //Getters
 string Pokemon::getNombre() const { return nombre; }
@@ -23,7 +25,6 @@ void Pokemon::serializar(ofstream& out) const {
     
     //Experiencia
     out.write(reinterpret_cast<const char*>(&experiencia), sizeof(experiencia));
-    out.close();
 }
 
 //Deserializacion
@@ -36,5 +37,4 @@ void Pokemon::deserializar(ifstream& in){
     
     //Experiencia
     in.read(reinterpret_cast<char*>(&experiencia), sizeof(experiencia));
-    in.close();
 }

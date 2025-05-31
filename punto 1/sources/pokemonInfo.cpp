@@ -2,7 +2,8 @@
 #include <fstream>
 
 // Constructor mediante lista de inicialización
-PokemonInfo::PokemonInfo(const string& tipoPokemon, const string& descripcionPokemon, map<string, int>& ataquesPorNivel, vector<int>& experienciaNivel): tipo(tipoPokemon), descripcion(descripcionPokemon), ataquesDisponiblesPorNivel(ataquesPorNivel), experienciaProximoNivel(experienciaNivel) {};
+PokemonInfo::PokemonInfo(const string& tipoPokemon, const string& descripcionPokemon, map<string, int>& ataquesPorNivelPoke, vector<int>& experienciaNivelPoke): tipo(tipoPokemon), descripcion(descripcionPokemon), ataquesDisponiblesPorNivel(ataquesPorNivelPoke), experienciaProximoNivel(experienciaNivelPoke) {};
+PokemonInfo::PokemonInfo() {};
 
 // Getters
 string PokemonInfo::getTipo() const { return tipo; }
@@ -11,20 +12,19 @@ map<string, int> PokemonInfo::getAtaquesDisponiblesPorNivel() const { return ata
 vector<int> PokemonInfo::getExperienciaProximoNivel() const { return experienciaProximoNivel; }
 
 // Setters
-void PokemonInfo:: setTipo(string& nuevoTipo) {
+void PokemonInfo:: setTipo(const string& nuevoTipo) {
     tipo = nuevoTipo;
 }
 
 //Serializacion
 void PokemonInfo::serializar(ofstream& out) const {
-    size_t tipoSize = tipo.size(); 
-    size_t descripcionSize = descripcion.size();
-    
     //Tipo
+    size_t tipoSize = tipo.size(); 
     out.write(reinterpret_cast<const char*>(&tipoSize), sizeof(tipoSize));
     out.write(tipo.c_str(), tipoSize);
     
     //Descripcion
+    size_t descripcionSize = descripcion.size();
     out.write(reinterpret_cast<const char*>(&descripcionSize), sizeof(descripcionSize));
     out.write(descripcion.c_str(), descripcionSize);
     
@@ -49,30 +49,33 @@ void PokemonInfo::serializar(ofstream& out) const {
 //Deserializacion
 void PokemonInfo:: deserializar(ifstream& in){
     //Tipo
-    size_t tipoSize = tipo.size();
+    size_t tipoSize;
     in.read(reinterpret_cast<char*>(&tipoSize), sizeof(tipoSize));
     tipo.resize(tipoSize);
     in.read(&tipo[0], tipoSize);
     
     //Descripcion
-    size_t descripcionSize = descripcion.size();
+    size_t descripcionSize;
     in.read(reinterpret_cast<char*>(&descripcionSize), sizeof(descripcionSize));
     descripcion.resize(descripcionSize);
     in.read(&descripcion[0], descripcionSize);
     
     //Ataques disponibles por nivel
-    size_t ataquesSize = ataquesDisponiblesPorNivel.size();
+    size_t ataquesSize;
     in.read(reinterpret_cast<char*>(&ataquesSize), sizeof(ataquesSize));
-    for (const auto& ataque : ataquesDisponiblesPorNivel) {
+    for (int i = 0; i < ataquesSize; i++) {
         //Serializacion del nombre del ataque
-        size_t nombreAtaqueSize = ataque.first.size();
+        size_t nombreAtaqueSize;
         in.read(reinterpret_cast<char*>(&nombreAtaqueSize), sizeof(nombreAtaqueSize));
-        in.read(&ataque.first[0], nombreAtaqueSize);
+        string nombreAtaque;
+        nombreAtaque.resize(nombreAtaqueSize);
+        in.read(&nombreAtaque[0], nombreAtaqueSize);
         
         //Serializamos el nivel del ataque
         int nivelAtaque;
-        in.read(reinterpret_cast<char*>(&nivelAtaque), sizeof(ataque.nivelAtaque));
+        in.read(reinterpret_cast<char*>(&nivelAtaque), sizeof(nivelAtaque));
 
+        ataquesDisponiblesPorNivel[nombreAtaque] = nivelAtaque;
     }
     
     //Experiencia proximo nivel
@@ -80,6 +83,4 @@ void PokemonInfo:: deserializar(ifstream& in){
     in.read(reinterpret_cast<char*>(&experienciaSize), sizeof(experienciaSize));
     experienciaProximoNivel.resize(experienciaSize);
     in.read(reinterpret_cast<char*>(experienciaProximoNivel.data()), experienciaSize * sizeof(int));
-    
-    in.close();
 }

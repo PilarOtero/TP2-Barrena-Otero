@@ -12,13 +12,15 @@ class Pokedex {
     private:
         unordered_map<Pokemon, PokemonInfo, PokemonHash> pokedexMap;
     public:
-        // Constructor
+        // Constructores
+        Pokedex();
         Pokedex(Pokemon& pokemon, const PokemonInfo& info);
         //Sobrecarga del constructor - pasando nombre de archivo de serialización
         Pokedex(Pokemon& pokemon, const PokemonInfo& info, ofstream& out);
         
         //Metodos
-        void mostrar(Pokemon& pokemon) const;
+        void mostrar(const Pokemon& pokemon) const;
+        void mostrarInfo(const Pokemon& pokemon) const;
         void mostrarTodos() const;
         void agregarPokemon(Pokemon& Nuevopokemon, const PokemonInfo& nuevoInfo, ofstream& out);
 

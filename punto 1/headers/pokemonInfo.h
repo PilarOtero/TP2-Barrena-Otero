@@ -14,8 +14,9 @@ class PokemonInfo {
         map<string, int> ataquesDisponiblesPorNivel;
         vector<int> experienciaProximoNivel;
     public:
-        //Constructor
-        PokemonInfo(const string& tipoPokemon, const string& descripcionPokemon, map<string, int>& ataquesPorNivel, vector<int>& experienciaNivel);
+        //Constructores
+        PokemonInfo();
+        PokemonInfo(const string& tipoPokemon, const string& descripcionPokemon, map<string, int>& ataquesPorNivel, vector<int>& experienciaNivelPoke);
         
         //Getters
         string getTipo() const;
@@ -24,7 +25,7 @@ class PokemonInfo {
         vector<int> getExperienciaProximoNivel() const;        
         
         //Setters
-        void setTipo(string& nuevoTipo);
+        void setTipo(const string& nuevoTipo);
 
         //Serializacion y deserializacion
         void serializar(ofstream& out) const;   

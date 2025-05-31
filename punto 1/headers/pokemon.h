@@ -10,8 +10,9 @@ class Pokemon {
         int experiencia;
     
     public:
-        //Constructor
-        Pokemon(string nombrePokemon, int experienciaPokemon);
+        //Constructores
+        Pokemon();
+        Pokemon(const string& nombrePoke, int experienciaPoke);
         
         //Getters
         string getNombre() const;
