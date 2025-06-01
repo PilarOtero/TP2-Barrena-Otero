@@ -5,7 +5,7 @@ Pokedex::Pokedex() {};
 
 Pokedex::Pokedex(const string& fileNamePokedex): fileName(fileNamePokedex) {
     ifstream in(fileNamePokedex, ios::binary);
-        deserializar(in);
+        deserializar();
 };
 
 //Metodo para mostrar el nombre y tipo del Pokemon
@@ -49,8 +49,7 @@ void Pokedex::mostrarInfo(const Pokemon& pokemon) const {
 void Pokedex:: agregarPokemon(Pokemon& NuevoPokemon, const PokemonInfo& nuevoinfo) {
     if (pokedexMap.find(NuevoPokemon) == pokedexMap.end()) {
         pokedexMap.insert({NuevoPokemon, nuevoinfo});
-        ofstream out(fileName, ios::binary);
-            serializar(out);
+            serializar();
         }
     
     else {
@@ -58,33 +57,57 @@ void Pokedex:: agregarPokemon(Pokemon& NuevoPokemon, const PokemonInfo& nuevoinf
     }
 }
 
+void Pokedex::eliminarPokemon(const string& nombrePokemon) {
+    //Buscamos el Pokemon por el nombre
+    for (auto it = pokedexMap.begin(); it != pokedexMap.end(); ++it){
+        if (it->first.getNombre() == nombrePokemon){
+            pokedexMap.erase(it);
+            return;
+        }
+    }
+}
+
 //Serializacion
-void Pokedex:: serializar(ofstream& out) const {
-    size_t size = pokedexMap.size();
-    //Guardo el tamaño del mapa
-    out.write(reinterpret_cast<const char*>(&size), sizeof(size));
-    for (const auto& par: pokedexMap){
-        //Serializacion del Pokemon
-        par.first.serializar(out);
-        //Serializacion de la info
-        par.second.serializar(out);
+void Pokedex:: serializar() const {
+    ofstream out(fileName, ios::binary);
+    if (out.is_open()){
+        size_t size = pokedexMap.size();
+        //Guardo el tamaño del mapa
+        out.write(reinterpret_cast<const char*>(&size), sizeof(size));
+        for (const auto& par: pokedexMap){
+            //Serializacion del Pokemon
+            par.first.serializar(out);
+            //Serializacion de la info
+            par.second.serializar(out);
+        }
+        out.close();
+    }
+    else {
+        cout << "Error al abrir el archivo" << endl;
     }
 }
 
 //Deserializacion
-void Pokedex:: deserializar(ifstream& in){
-    size_t size;
-    in.read(reinterpret_cast<char*>(&size), sizeof(size));
-    for(int i = 0; i < size; ++i){
-        Pokemon pokemon;
-        PokemonInfo info;
+void Pokedex:: deserializar(){
+    ifstream in(fileName, ios::binary);
+    if (in.is_open()){
+        size_t size;
+        in.read(reinterpret_cast<char*>(&size), sizeof(size));
+        for(int i = 0; i < size; ++i){
+            Pokemon pokemon;
+            PokemonInfo info;
 
-        //Deserializacion del Pokemon
-        pokemon.deserializar(in);
-        //Deserializacion de la info
-        info.deserializar(in);
-        //Agrego el Pokemon y su info al mapa
-        pokedexMap[pokemon] = info;
+            //Deserializacion del Pokemon
+            pokemon.deserializar(in);
+            //Deserializacion de la info
+            info.deserializar(in);
+            //Agrego el Pokemon y su info al mapa
+            pokedexMap[pokemon] = info;
+        }
+        in.close();
+    }
+    else {
+        cout << "Error al abrir el archivo" << endl;
     }
 }
 

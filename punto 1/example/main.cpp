@@ -5,7 +5,7 @@ using namespace std;
 
 int main(){
     //Creacion de la Pokedex
-    Pokedex pokedexMap1;
+    Pokedex pokedexMap1("pokedexMapTest");
 
     //Creacion de Pokemones;
     Pokemon squirtle = Pokemon("Squirtle", 100);
@@ -36,7 +36,7 @@ int main(){
 
     //Serializacion
     if (out.is_open()){
-        pokedexMap1.serializar(out);
+        pokedexMap1.serializar();
         out.close();
     }
 
@@ -45,7 +45,7 @@ int main(){
     ifstream in("pokedexMapTest", ios:: binary);
     //Deserializacion
     if (in.is_open()){
-        pokedexCargada.deserializar(in);
+        pokedexCargada.deserializar();
         in.close();
         pokedexCargada.mostrarTodos();
     }
