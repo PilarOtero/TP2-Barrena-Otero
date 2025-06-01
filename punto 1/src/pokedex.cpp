@@ -4,8 +4,8 @@
 Pokedex::Pokedex() {};
 
 Pokedex::Pokedex(const string& fileNamePokedex): fileName(fileNamePokedex) {
-    ifstream in(fileNamePokedex, ios::binary);
-        deserializar();
+    //ifstream in(fileNamePokedex, ios::binary);
+    deserializar();
 };
 
 //Metodo para mostrar el nombre y tipo del Pokemon
@@ -62,6 +62,7 @@ void Pokedex::eliminarPokemon(const string& nombrePokemon) {
     for (auto it = pokedexMap.begin(); it != pokedexMap.end(); ++it){
         if (it->first.getNombre() == nombrePokemon){
             pokedexMap.erase(it);
+            serializar();
             return;
         }
     }
@@ -73,6 +74,7 @@ void Pokedex::serializar() const {
     if (out.is_open()){
         size_t size = pokedexMap.size();
         //Guardo el tamaño del mapa
+        cout << "Guardando " << size << " pokemones en archivo: " << fileName << endl;
         out.write(reinterpret_cast<const char*>(&size), sizeof(size));
         for (const auto& par: pokedexMap){
             //Serializacion del Pokemon

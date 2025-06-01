@@ -63,7 +63,7 @@ void PokemonInfo:: deserializar(ifstream& in){
     //Ataques disponibles por nivel
     size_t ataquesSize;
     in.read(reinterpret_cast<char*>(&ataquesSize), sizeof(ataquesSize));
-    for (int i = 0; i < ataquesSize; i++) {
+    for (size_t i = 0; i < ataquesSize; i++) {
         //Serializacion del nombre del ataque
         size_t nombreAtaqueSize;
         in.read(reinterpret_cast<char*>(&nombreAtaqueSize), sizeof(nombreAtaqueSize));

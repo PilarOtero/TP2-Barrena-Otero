@@ -5,7 +5,7 @@ using namespace std;
 
 int main(){
     //Creacion de la Pokedex
-    Pokedex pokedexMap1("pokedexMapTest");
+    Pokedex pokedexMap1("../pokedexMapTest");
 
     //Creacion de Pokemones;
     Pokemon squirtle = Pokemon("Squirtle", 100);
@@ -27,26 +27,26 @@ int main(){
     PokemonInfo charmanderInfo = PokemonInfo("Fuego", "Una lagartija con una llama en su cola", ataquesPorNivelCharmander, experienciaNivelCharmander);
 
     //Archivo de serializacion
-    ofstream out("pokedexMapTest", ios:: binary);
+    //ofstream out("pokedexMapTest", ios:: binary); LO COMENTE PQ NO ES NECESARIO
 
-    //Agregado de los Pokemones con su informacion al mapa Pokedex
+    //Agregado de los Pokemones con su informacion al mapa Pokedex, cada uno serializa
     pokedexMap1.agregarPokemon(squirtle, squirtleInfo);
     pokedexMap1.agregarPokemon(bulbasaur, bulbasaurInfo);
     pokedexMap1.agregarPokemon(charmander, charmanderInfo);
 
     //Serializacion
-    if (out.is_open()){
-        pokedexMap1.serializar();
-        out.close();
-    }
+    //if (out.is_open()){
+        //pokedexMap1.serializar(); ESTO TAMPOCO
+        //out.close();
+    //}
 
     //Archivo de deserializacion
-    Pokedex pokedexCargada;
-    ifstream in("pokedexMapTest", ios:: binary);
+    Pokedex pokedexCargada("../pokedexMapTest")
+    //ifstream in("pokedexMapTest", ios:: binary);
     //Deserializacion
-    if (in.is_open()){
-        pokedexCargada.deserializar();
-        in.close();
-        pokedexCargada.mostrarTodos();
-    }
+    //if (in.is_open()){
+        //pokedexCargada.deserializar();
+        //in.close();
+    pokedexCargada.mostrarTodos();
+    return 0;
 }
