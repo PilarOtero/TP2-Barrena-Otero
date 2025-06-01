@@ -68,7 +68,7 @@ void Pokedex::eliminarPokemon(const string& nombrePokemon) {
 }
 
 //Serializacion
-void Pokedex:: serializar() const {
+void Pokedex::serializar() const {
     ofstream out(fileName, ios::binary);
     if (out.is_open()){
         size_t size = pokedexMap.size();
@@ -88,7 +88,7 @@ void Pokedex:: serializar() const {
 }
 
 //Deserializacion
-void Pokedex:: deserializar(){
+void Pokedex::deserializar(){
     ifstream in(fileName, ios::binary);
     if (in.is_open()){
         size_t size;
