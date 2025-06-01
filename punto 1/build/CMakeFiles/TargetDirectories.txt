@@ -1,0 +1,3 @@
+/home/pilarotero/Desktop/2 año/paradigmas de programacion/TP2-Barrena-Otero/punto 1/build/CMakeFiles/pokedexProject1.dir
+/home/pilarotero/Desktop/2 año/paradigmas de programacion/TP2-Barrena-Otero/punto 1/build/CMakeFiles/edit_cache.dir
+/home/pilarotero/Desktop/2 año/paradigmas de programacion/TP2-Barrena-Otero/punto 1/build/CMakeFiles/rebuild_cache.dir

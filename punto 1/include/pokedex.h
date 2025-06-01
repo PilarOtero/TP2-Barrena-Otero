@@ -14,7 +14,7 @@ class Pokedex {
         string fileName;
     public:
         // Constructores
-        Pokedex() = delete;
+        Pokedex();
         //Sobrecarga del constructor - pasando nombre de archivo de serialización
         Pokedex(const string& fileNamePokedex);
         

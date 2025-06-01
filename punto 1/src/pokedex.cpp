@@ -4,7 +4,6 @@
 Pokedex::Pokedex() {};
 
 Pokedex::Pokedex(const string& fileNamePokedex): fileName(fileNamePokedex) {
-    //ifstream in(fileNamePokedex, ios::binary);
     deserializar();
 };
 
@@ -27,7 +26,7 @@ void Pokedex::mostrarInfo(const Pokemon& pokemon) const {
         cout << "TIPO -> " << info.getTipo() << "\nDESCRIPCION -> " << info.getDescripcion() << "\n";
         
         const auto& ataques = info.getAtaquesDisponiblesPorNivel();
-        cout << "ATAQUES ";
+        cout << "ATAQUES " << endl;
         for (auto it = ataques.begin(); it!= ataques.end(); ++it) {
             cout << "- "<< it->first << " -> Puntaje de daño: " << it->second << endl;
 
@@ -49,8 +48,13 @@ void Pokedex::mostrarInfo(const Pokemon& pokemon) const {
 void Pokedex:: agregarPokemon(Pokemon& NuevoPokemon, const PokemonInfo& nuevoinfo) {
     if (pokedexMap.find(NuevoPokemon) == pokedexMap.end()) {
         pokedexMap.insert({NuevoPokemon, nuevoinfo});
+        if (!fileName.empty()){
+            //Se agrega la nueva informacion al archivo
+            cout << "Guardando a " << NuevoPokemon.getNombre() << "en el archivo " << fileName << "..." << endl;
+            cout << "---------------------------------------------------------------" << endl;
             serializar();
         }
+    }   
     
     else {
         cout << "El Pokemon ya pertenece a Pokedex" << endl;
@@ -63,6 +67,8 @@ void Pokedex::eliminarPokemon(const string& nombrePokemon) {
         if (it->first.getNombre() == nombrePokemon){
             pokedexMap.erase(it);
             serializar();
+            cout << "Se ha eliminado a " << nombrePokemon << " de la Pokedex!" << endl;
+            cout << "---------------------------------------------------------------" << endl;
             return;
         }
     }
@@ -71,52 +77,54 @@ void Pokedex::eliminarPokemon(const string& nombrePokemon) {
 //Serializacion
 void Pokedex::serializar() const {
     ofstream out(fileName, ios::binary);
-    if (out.is_open()){
-        size_t size = pokedexMap.size();
-        //Guardo el tamaño del mapa
-        cout << "Guardando " << size << " pokemones en archivo: " << fileName << endl;
-        out.write(reinterpret_cast<const char*>(&size), sizeof(size));
-        for (const auto& par: pokedexMap){
-            //Serializacion del Pokemon
-            par.first.serializar(out);
-            //Serializacion de la info
-            par.second.serializar(out);
-        }
-        out.close();
-    }
-    else {
+    if (!out.is_open()){
         cout << "Error al abrir el archivo" << endl;
+        return;
     }
+
+    //Guardo el tamaño del mapa
+    size_t size = pokedexMap.size();
+    out.write(reinterpret_cast<const char*>(&size), sizeof(size));
+    for (const auto& par: pokedexMap){
+        //Serializacion del Pokemon
+        par.first.serializar(out);
+        //Serializacion de la info
+        par.second.serializar(out);
+    }
+    out.close();
 }
+
+
 
 //Deserializacion
 void Pokedex::deserializar(){
     ifstream in(fileName, ios::binary);
-    if (in.is_open()){
-        size_t size;
-        in.read(reinterpret_cast<char*>(&size), sizeof(size));
-        for(int i = 0; i < size; ++i){
-            Pokemon pokemon;
-            PokemonInfo info;
-
-            //Deserializacion del Pokemon
-            pokemon.deserializar(in);
-            //Deserializacion de la info
-            info.deserializar(in);
-            //Agrego el Pokemon y su info al mapa
-            pokedexMap[pokemon] = info;
-        }
-        in.close();
-    }
-    else {
+    if (!in.is_open()){
         cout << "Error al abrir el archivo" << endl;
+        return;
     }
+    //Limpiamos antes de cargar la informacion
+    pokedexMap.clear();
+
+    size_t size;
+    in.read(reinterpret_cast<char*>(&size), sizeof(size));
+    for(int i = 0; i < size; ++i){
+        Pokemon pokemon;
+        PokemonInfo info;
+        //Deserializacion del Pokemon
+        pokemon.deserializar(in);
+        //Deserializacion de la info
+        info.deserializar(in);
+        //Agrego el Pokemon y su info al mapa
+        pokedexMap[pokemon] = info;
+    }
+    in.close();
 }
 
 //Metodo para mostrar todos los Pokemones
 void Pokedex::mostrarTodos() const {
     if (pokedexMap.empty()) {
-        cout << "La Pokedex vacia" << endl;
+        cout << "La Pokedex esta vacia" << endl;
         return;
     }
 
