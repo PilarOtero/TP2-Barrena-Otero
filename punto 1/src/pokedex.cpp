@@ -15,7 +15,7 @@ void Pokedex::mostrar(const Pokemon& pokemon) const {
         cout << "NOMBRE -> " << pokemon.getNombre() << "\nEXPERIENCIA -> " << pokemon.getExperiencia() << endl;
     }
     else {
-        cout << "Pokemon no encontrado..." << endl;
+        cout << "Pokemon desconocido!" << endl;
     }
 }
 
@@ -41,11 +41,11 @@ void Pokedex::mostrarInfo(const Pokemon& pokemon) const {
     }
 
     else {
-        cout << "Pokemon no encontrado..." << endl;
+        cout << "Pokemon desconocido!" << endl;
     }
 }
 
-//Aca habria que ver si el pokemon esta o no en el mapa
+
 void Pokedex:: agregarPokemon(Pokemon& NuevoPokemon, const PokemonInfo& nuevoinfo) {
     if (pokedexMap.find(NuevoPokemon) == pokedexMap.end()) {
         pokedexMap.insert({NuevoPokemon, nuevoinfo});

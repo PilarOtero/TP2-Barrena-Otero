@@ -13,7 +13,7 @@ class Pokedex {
         unordered_map<Pokemon, PokemonInfo, PokemonHash> pokedexMap;
         string archivo;
     public:
-        // Constructores
+        //Constructores
         Pokedex();
         //Sobrecarga del constructor - pasando nombre de archivo de serialización
         Pokedex(const string& path);

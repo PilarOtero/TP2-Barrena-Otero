@@ -4,4 +4,4 @@ PARA COMPILAR (esto es para acordarnos)
 3. cd build
 4. cmake ..
 5. make 
-6. ./bin/pokedexProjec
+6. ./bin/pokedexProject1
