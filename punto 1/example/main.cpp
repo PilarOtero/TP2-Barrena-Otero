@@ -29,7 +29,7 @@ int main(){
     //Archivo de serializacion
     ofstream out("pokedexMapTest", ios:: binary);
 
-    //Agregado de los Pokemones con su informacion a Pokedex
+    //Agregado de los Pokemones con su informacion al mapa Pokedex
     pokedexMap1.agregarPokemon(squirtle, squirtleInfo);
     pokedexMap1.agregarPokemon(bulbasaur, bulbasaurInfo);
     pokedexMap1.agregarPokemon(charmander, charmanderInfo);

@@ -3,8 +3,8 @@
 //Constructores
 Pokedex::Pokedex() {};
 
-Pokedex::Pokedex(const string& path): archivo(path) {
-    ifstream in(archivo, ios::binary);
+Pokedex::Pokedex(const string& fileNamePokedex): fileName(fileNamePokedex) {
+    ifstream in(fileNamePokedex, ios::binary);
         deserializar(in);
 };
 
@@ -45,11 +45,11 @@ void Pokedex::mostrarInfo(const Pokemon& pokemon) const {
     }
 }
 
-
+//Aca habria que ver si el pokemon esta o no en el mapa
 void Pokedex:: agregarPokemon(Pokemon& NuevoPokemon, const PokemonInfo& nuevoinfo) {
     if (pokedexMap.find(NuevoPokemon) == pokedexMap.end()) {
         pokedexMap.insert({NuevoPokemon, nuevoinfo});
-        ofstream out(archivo, ios::binary);
+        ofstream out(fileName, ios::binary);
             serializar(out);
         }
     
