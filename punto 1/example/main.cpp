@@ -33,10 +33,11 @@ int main(){
     pokedexMap1.mostrarTodos();
 
     //Test - prueba de eliminacion de un Pokemon
-    pokedexMap1.eliminarPokemon(charmander.getNombre());
+    pokedexMap1.eliminarPokemon(squirtle.getNombre());
 
     //Archivo de deserializacion
-    Pokedex pokedexCargada("PokedexMapTest");   
+    Pokedex pokedexCargada("PokedexMapTest");
+    pokedexCargada.descargarInfo(); 
     cout << "Deserializando archivo..." << endl;
     cout << "---------------------------------------------------------------" << endl; 
     pokedexCargada.mostrarTodos();

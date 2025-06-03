@@ -3,9 +3,7 @@
 //Constructores
 Pokedex::Pokedex() {};
 
-Pokedex::Pokedex(const string& fileNamePokedex): fileName(fileNamePokedex) {
-    descargarInfo();
-};
+Pokedex::Pokedex(const string& fileNamePokedex): fileName("bin/" + fileNamePokedex) {};
 
 //Metodo para mostrar el nombre y tipo del Pokemon
 void Pokedex::mostrar(const Pokemon& pokemon) const {
@@ -50,7 +48,7 @@ void Pokedex:: agregarPokemon(Pokemon& NuevoPokemon, const PokemonInfo& nuevoinf
         pokedexMap.insert({NuevoPokemon, nuevoinfo});
         if (!fileName.empty()){
             //Se agrega la nueva informacion al archivo
-            cout << "Guardando a " << NuevoPokemon.getNombre() << "en el archivo " << fileName << "..." << endl;
+            cout << "Guardando a " << NuevoPokemon.getNombre() << " en el archivo " << fileName << "..." << endl;
             cout << "---------------------------------------------------------------" << endl;
             cargarInfo();
         }
@@ -92,8 +90,6 @@ void Pokedex::cargarInfo() const {
     }
     out.close();
 }
-
-
 
 //Deserializacion
 void Pokedex::descargarInfo(){
