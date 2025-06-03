@@ -4,7 +4,7 @@
 Pokedex::Pokedex() {};
 
 Pokedex::Pokedex(const string& fileNamePokedex): fileName(fileNamePokedex) {
-    deserializar();
+    descargarInfo();
 };
 
 //Metodo para mostrar el nombre y tipo del Pokemon
@@ -52,10 +52,9 @@ void Pokedex:: agregarPokemon(Pokemon& NuevoPokemon, const PokemonInfo& nuevoinf
             //Se agrega la nueva informacion al archivo
             cout << "Guardando a " << NuevoPokemon.getNombre() << "en el archivo " << fileName << "..." << endl;
             cout << "---------------------------------------------------------------" << endl;
-            serializar();
+            cargarInfo();
         }
-    }   
-    
+    }
     else {
         cout << "El Pokemon ya pertenece a Pokedex" << endl;
     }
@@ -66,7 +65,7 @@ void Pokedex::eliminarPokemon(const string& nombrePokemon) {
     for (auto it = pokedexMap.begin(); it != pokedexMap.end(); ++it){
         if (it->first.getNombre() == nombrePokemon){
             pokedexMap.erase(it);
-            serializar();
+            cargarInfo();
             cout << "Se ha eliminado a " << nombrePokemon << " de la Pokedex!" << endl;
             cout << "---------------------------------------------------------------" << endl;
             return;
@@ -75,7 +74,7 @@ void Pokedex::eliminarPokemon(const string& nombrePokemon) {
 }
 
 //Serializacion
-void Pokedex::serializar() const {
+void Pokedex::cargarInfo() const {
     ofstream out(fileName, ios::binary);
     if (!out.is_open()){
         cout << "Error al abrir el archivo" << endl;
@@ -97,7 +96,7 @@ void Pokedex::serializar() const {
 
 
 //Deserializacion
-void Pokedex::deserializar(){
+void Pokedex::descargarInfo(){
     ifstream in(fileName, ios::binary);
     if (!in.is_open()){
         cout << "Error al abrir el archivo" << endl;

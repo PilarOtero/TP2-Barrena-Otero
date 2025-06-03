@@ -26,8 +26,8 @@ class Pokedex {
         void eliminarPokemon(const string& nombrePokemon);
 
         //Serializacion y deserializacion
-        void serializar() const;   
-        void deserializar();
+        void cargarInfo() const;   
+        void descargarInfo();
 
         //Destructor
         ~Pokedex() = default;
