@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 #Nombre del Proyecto
-project(PodekexProject1)
+project(podekexProject1)
 
 #Estandar de C++
 set(CMAKE_CXX_STANDARD 17)

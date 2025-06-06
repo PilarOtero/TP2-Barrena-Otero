@@ -1,0 +1,20 @@
+#Versión de CMake 
+cmake_minimum_required(VERSION 3.10)
+
+#Nombre del Proyecto
+project(dronesProject2)
+
+#Estandar de C++
+set(CMAKE_CXX_STANDARD 17)
+
+#Archivos fuente 
+file(GLOB SOURCES "src/*.cpp" "example/*.cpp")
+
+#Creación del ejecutable
+add_executable(dronesProject2 ${SOURCES})
+
+#Directorio de los Headers (.h)
+target_include_directories(dronesProject2 PRIVATE ${CMAKE_SOURCE_DIR}/include)
+
+#Carpeta de creación del ejecutable
+set_target_properties(dronesProject2 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
