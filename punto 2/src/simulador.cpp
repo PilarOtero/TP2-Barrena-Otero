@@ -12,16 +12,16 @@ void Hangar::despegar(int dron){
     unique_lock<mutex> lock_izq(posiciones[izq], defer_lock);
     lock(lock_der, lock_izq); //evita deadlock 
     cout << "Dron " << dron << " despegando...";
-    this_thread::sleep_for(chrono::sleep(5)); //espera de 5 segundos hasta alcanzar los 10 metros
+    this_thread::sleep_for(chrono::seconds(5)); //espera de 5 segundos hasta alcanzar los 10 metros
     cout << "Dron" << dron << " alcanzó altura de 10 metros"; 
     
 }
 
-void Hangar::simularDespegues() const{
-    for(int i = 0; i <= CANTDRONES; i++){
-        drones.emplace_back(despegar, posiciones[i % 5], i + 1);
+void Hangar::simularDespegues() {
+    for(int i = 0; i < CANTDRONES; i++){
+        drones.emplace_back(despegar(i), posiciones[i % 5], i + 1);
         for(auto& dron : drones){
-            dron.join();
+            drones.join();
         }
     }
 }

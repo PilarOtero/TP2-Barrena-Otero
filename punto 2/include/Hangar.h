@@ -10,7 +10,7 @@ class Hangar{
     public:
         Hangar() = default;
         void despegar(int dron);
-        void simularDespegues() const; // ver dsps si es const
+        void simularDespegues(); 
         ~Hangar() = default;
     private:
         static const int CANTDRONES = 5;
