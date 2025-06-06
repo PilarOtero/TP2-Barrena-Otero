@@ -19,9 +19,9 @@ void Hangar::despegar(int dron){
 
 void Hangar::simularDespegues() {
     for(int i = 0; i < CANTDRONES; i++){
-        drones.emplace_back(despegar(i), posiciones[i % 5], i + 1);
+        drones.emplace_back(despegar, posiciones[i % 5], i + 1);
         for(auto& dron : drones){
-            drones.join();
+            dron.join();
         }
     }
 }
