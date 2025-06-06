@@ -4,10 +4,8 @@
 #include <chrono>
 
 void Hangar::despegar(int dron){
-    int der = (dron - 1 + CANTDRONES) % CANTDRONES; //EXPLICARRRRRRRR FORMULAS
+    int der = (dron - 1 + CANTDRONES) % CANTDRONES; //EXPLICARRRR FORMULAS
     int izq = dron;
-
-    if (dron==5) cout << "aaaaaaa" << endl;
     
     {
     lock_guard<mutex> lock(habilitado);
@@ -27,7 +25,7 @@ void Hangar::despegar(int dron){
     
     {
     lock_guard<mutex> lock(habilitado);
-    cout << "Dron" << dron << " alcanzó altura de 10 metros" << endl; 
+    cout << "Dron " << dron << " alcanzó altura de 10 metros" << endl; 
     }
 }
 
