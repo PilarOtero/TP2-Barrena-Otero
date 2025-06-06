@@ -14,13 +14,9 @@ void Hangar::despegar(int dron){
     cout << "Dron " << dron << " esperando para despegar..." << endl;
     }
 
-    if (dron==5) cout << "aaaaaaa" << endl;
-
     unique_lock<mutex> lock_der(posiciones[der], defer_lock); //usamos defer_lock para hacer manualmente el bloqueo del mutex mas adelante 
     unique_lock<mutex> lock_izq(posiciones[izq], defer_lock); 
     lock(lock_der, lock_izq); //evita deadlock 
-
-    
     
     {
     lock_guard<mutex> lock(habilitado);
@@ -37,7 +33,7 @@ void Hangar::despegar(int dron){
 
 void Hangar::simularDespegues() {
     for(int i = 0; i < CANTDRONES; ++i){
-        drones.emplace_back(&Hangar::despegar, this, i + 1);
+        drones.emplace_back(&Hangar::despegar, this, i);
     }
     for(auto& dron : drones){
         dron.join();
