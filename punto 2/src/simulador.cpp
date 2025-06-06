@@ -17,7 +17,7 @@ void Hangar::despegar(int dron){
     lock(lock_der, lock_izq); //evita deadlock 
     
     {
-    lock_guard<mutex> lock(habilitato);
+    lock_guard<mutex> lock(habilitado);
     cout << "Dron " << dron << " despegando...";
     }
 
