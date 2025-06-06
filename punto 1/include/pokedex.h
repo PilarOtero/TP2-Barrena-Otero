@@ -23,7 +23,6 @@ class Pokedex {
         void mostrarInfo(const Pokemon& pokemon) const;
         void mostrarTodos() const;
         void agregarPokemon(Pokemon& Nuevopokemon, const PokemonInfo& nuevoInfo);
-        void eliminarPokemon(const string& nombrePokemon);
 
         //Serializacion y deserializacion
         void cargarInfo() const;   

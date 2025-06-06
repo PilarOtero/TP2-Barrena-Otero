@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <mutex>
 #include <thread>
@@ -7,12 +9,12 @@ using namespace std;
 class Hangar{
     public:
         Hangar() = default;
-        void despegar();
-        void simularDespegues(int dron) const; // ver dsps si es const
-        void logMessage(const string& mensaje);
+        void despegar(int dron);
+        void simularDespegues() const; // ver dsps si es const
         ~Hangar() = default;
     private:
         static const int CANTDRONES = 5;
         mutex posiciones[CANTDRONES]; 
         vector<thread> drones;
+        mutex habilitado;
 };

@@ -32,9 +32,6 @@ int main(){
 
     pokedexMap1.mostrarTodos();
 
-    //Test - prueba de eliminacion de un Pokemon
-    pokedexMap1.eliminarPokemon(squirtle.getNombre());
-
     //Archivo de deserializacion
     Pokedex pokedexCargada("PokedexMapTest");
     pokedexCargada.descargarInfo(); 

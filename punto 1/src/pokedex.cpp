@@ -58,19 +58,6 @@ void Pokedex:: agregarPokemon(Pokemon& NuevoPokemon, const PokemonInfo& nuevoinf
     }
 }
 
-void Pokedex::eliminarPokemon(const string& nombrePokemon) {
-    //Buscamos el Pokemon por el nombre
-    for (auto it = pokedexMap.begin(); it != pokedexMap.end(); ++it){
-        if (it->first.getNombre() == nombrePokemon){
-            pokedexMap.erase(it);
-            cargarInfo();
-            cout << "Se ha eliminado a " << nombrePokemon << " de la Pokedex!" << endl;
-            cout << "---------------------------------------------------------------" << endl;
-            return;
-        }
-    }
-}
-
 //Serializacion
 void Pokedex::cargarInfo() const {
     ofstream out(fileName, ios::binary);

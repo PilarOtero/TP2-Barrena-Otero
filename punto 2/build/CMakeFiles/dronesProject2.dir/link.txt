@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/dronesProject2.dir/example/main.cpp.o CMakeFiles/dronesProject2.dir/src/simulador.cpp.o -o bin/dronesProject2 

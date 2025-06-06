@@ -1,0 +1,3 @@
+/home/barreagus/TP2-Barrena-Otero/punto 2/build/CMakeFiles/dronesProject2.dir
+/home/barreagus/TP2-Barrena-Otero/punto 2/build/CMakeFiles/edit_cache.dir
+/home/barreagus/TP2-Barrena-Otero/punto 2/build/CMakeFiles/rebuild_cache.dir
