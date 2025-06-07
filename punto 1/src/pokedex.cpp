@@ -21,7 +21,7 @@ void Pokedex::mostrarInfo(const Pokemon& pokemon) const {
     auto it = pokedexMap.find(pokemon);
     if (it != pokedexMap.end()) {
         const PokemonInfo& info = it->second;
-        cout << "TIPO -> " << info.getTipo() << "\nDESCRIPCION -> " << info.getDescripcion() << "\n";
+        cout << "TIPO -> " << info.getTipo() << "\nDESCRIPCIÓN -> " << info.getDescripcion() << "\n";
         
         const auto& ataques = info.getAtaquesDisponiblesPorNivel();
         cout << "ATAQUES " << endl;
@@ -71,9 +71,9 @@ void Pokedex::cargarInfo() const {
     out.write(reinterpret_cast<const char*>(&size), sizeof(size));
     for (const auto& par: pokedexMap){
         //Serializacion del Pokemon
-        par.first.serializar(out);
+        par.first.cargarInfo(out);
         //Serializacion de la info
-        par.second.serializar(out);
+        par.second.cargarInfo(out);
     }
     out.close();
 }
@@ -94,9 +94,9 @@ void Pokedex::descargarInfo(){
         Pokemon pokemon;
         PokemonInfo info;
         //Deserializacion del Pokemon
-        pokemon.deserializar(in);
+        pokemon.descargarInfo(in);
         //Deserializacion de la info
-        info.deserializar(in);
+        info.descargarInfo(in);
         //Agrego el Pokemon y su info al mapa
         pokedexMap[pokemon] = info;
     }

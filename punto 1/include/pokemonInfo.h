@@ -28,8 +28,8 @@ class PokemonInfo {
         void setTipo(const string& nuevoTipo);
 
         //Serializacion y deserializacion
-        void serializar(ofstream& out) const;   
-        void deserializar(ifstream& in);
+        void cargarInfo(ofstream& out) const;   
+        void descargarInfo(ifstream& in);
         
         //Destructor
         ~PokemonInfo() = default;

@@ -15,8 +15,8 @@ void Pokemon:: setExperiencia(int nuevaExperiencia) {
     if (experiencia < 0 && nuevaExperiencia >= 0) experiencia = nuevaExperiencia;
 }
 
-//Serializacion
-void Pokemon::serializar(ofstream& out) const {
+//Carga de la información del Pokemon a un archivo
+void Pokemon::cargarInfo(ofstream& out) const {
     //Nombre
     size_t nombreSize = nombre.size();
     //Guarda el tamaño del nombre
@@ -27,8 +27,8 @@ void Pokemon::serializar(ofstream& out) const {
     out.write(reinterpret_cast<const char*>(&experiencia), sizeof(experiencia));
 }
 
-//Deserializacion
-void Pokemon::deserializar(ifstream& in){
+//Reconstrucción del objeto Pokemon desde un archivo
+void Pokemon::descargarInfo(ifstream& in){
     size_t nombreSize;
     //Nombre
     in.read(reinterpret_cast<char*>(&nombreSize), sizeof(nombreSize));

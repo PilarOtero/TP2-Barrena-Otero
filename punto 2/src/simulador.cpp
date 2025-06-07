@@ -4,7 +4,9 @@
 #include <chrono>
 
 void Hangar::despegar(int dron){
-    int der = (dron - 1 + CANTDRONES) % CANTDRONES; //EXPLICARRRR FORMULAS
+    //Zona derecha del dron - entre el y el de su izquierda
+    int der = (dron - 1 + CANTDRONES) % CANTDRONES; 
+    //Zona izquierda del dron - entre el y el de su derecha
     int izq = dron;
     
     {
@@ -12,16 +14,19 @@ void Hangar::despegar(int dron){
     cout << "Dron " << dron << " esperando para despegar..." << endl;
     }
 
-    unique_lock<mutex> lock_der(posiciones[der], defer_lock); //usamos defer_lock para hacer manualmente el bloqueo del mutex mas adelante 
+    //defer_lock para hacer manualmente el bloqueo del mutex más adelante 
+    unique_lock<mutex> lock_der(posiciones[der], defer_lock); 
     unique_lock<mutex> lock_izq(posiciones[izq], defer_lock); 
-    lock(lock_der, lock_izq); //evita deadlock 
+    //Bloqueamos ambos threads para evitar deadlock
+    lock(lock_der, lock_izq); 
     
     {
     lock_guard<mutex> lock(habilitado);
     cout << "Dron " << dron << " despegando..."<< endl;
     }
 
-    this_thread::sleep_for(chrono::seconds(5)); //espera de 5 segundos hasta alcanzar los 10 metros
+    //Espera de 5 segundos y alcanza los 10 metros
+    this_thread::sleep_for(chrono::seconds(5)); 
     
     {
     lock_guard<mutex> lock(habilitado);
@@ -30,9 +35,11 @@ void Hangar::despegar(int dron){
 }
 
 void Hangar::simularDespegues() {
+    //Despegue de los drones
     for(int i = 0; i < CANTDRONES; ++i){
         drones.emplace_back(&Hangar::despegar, this, i);
     }
+    //Unión de los threads
     for(auto& dron : drones){
         dron.join();
     }

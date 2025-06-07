@@ -11,11 +11,12 @@ using namespace std;
 class Pokedex {
     private:
         unordered_map<Pokemon, PokemonInfo, PokemonHash> pokedexMap;
+        //Nombre del archivo para la carga y descarga de la información 
         string fileName;
     public:
-        // Constructores
+        //Constructores
         Pokedex();
-        //Sobrecarga del constructor - pasando nombre de archivo de serialización
+        //Sobrecarga del constructor - pasando nombre de archivo
         Pokedex(const string& fileNamePokedex);
         
         //Metodos
@@ -24,7 +25,7 @@ class Pokedex {
         void mostrarTodos() const;
         void agregarPokemon(Pokemon& Nuevopokemon, const PokemonInfo& nuevoInfo);
 
-        //Serializacion y deserializacion
+        //Carga y descarga de información al archivo
         void cargarInfo() const;   
         void descargarInfo();
 

@@ -26,16 +26,19 @@ class Pokemon {
             return nombre == other.nombre;
         }
 
-        //Serializacion y deserializacion
-        void serializar(ofstream& out) const;   
-        void deserializar(ifstream& in);
+        //Carga y descarga de información del Pokemon a archivo
+        void cargarInfo(ofstream& out) const;   
+        void descargarInfo(ifstream& in);
 
         //Destructor
         ~Pokemon() = default;
 };
 
+
+//Functor para el hash de Pokemon
 struct PokemonHash {
     public:
+        //Sobrecarga del operador ()
         size_t operator()(const Pokemon& pokemon) const {
             return hash<string>()(pokemon.getNombre());
         }

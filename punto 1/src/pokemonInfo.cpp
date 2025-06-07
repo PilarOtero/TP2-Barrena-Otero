@@ -1,9 +1,9 @@
 #include "../include/pokemonInfo.h"
 #include <fstream>
 
-// Constructor mediante lista de inicialización
-PokemonInfo::PokemonInfo(const string& tipoPokemon, const string& descripcionPokemon, map<string, int>& ataquesPorNivelPoke, vector<int>& experienciaNivelPoke): tipo(tipoPokemon), descripcion(descripcionPokemon), ataquesDisponiblesPorNivel(ataquesPorNivelPoke), experienciaProximoNivel(experienciaNivelPoke) {};
 PokemonInfo::PokemonInfo() {};
+//Constructor mediante lista de inicialización
+PokemonInfo::PokemonInfo(const string& tipoPokemon, const string& descripcionPokemon, map<string, int>& ataquesPorNivelPoke, vector<int>& experienciaNivelPoke): tipo(tipoPokemon), descripcion(descripcionPokemon), ataquesDisponiblesPorNivel(ataquesPorNivelPoke), experienciaProximoNivel(experienciaNivelPoke) {};
 
 // Getters
 string PokemonInfo::getTipo() const { return tipo; }
@@ -16,14 +16,14 @@ void PokemonInfo:: setTipo(const string& nuevoTipo) {
     tipo = nuevoTipo;
 }
 
-//Serializacion
-void PokemonInfo::serializar(ofstream& out) const {
+//Carga de información del Pokemon a archivo
+void PokemonInfo::cargarInfo(ofstream& out) const {
     //Tipo
     size_t tipoSize = tipo.size(); 
     out.write(reinterpret_cast<const char*>(&tipoSize), sizeof(tipoSize));
     out.write(tipo.c_str(), tipoSize);
     
-    //Descripcion
+    //Descripción
     size_t descripcionSize = descripcion.size();
     out.write(reinterpret_cast<const char*>(&descripcionSize), sizeof(descripcionSize));
     out.write(descripcion.c_str(), descripcionSize);
@@ -33,7 +33,7 @@ void PokemonInfo::serializar(ofstream& out) const {
     //Guarda el tamaño del mapa
     out.write(reinterpret_cast<const char*>(&ataquesSize), sizeof(ataquesSize));
     for (const auto& ataque : ataquesDisponiblesPorNivel) {
-        //Serializamos desempaquetando cada par key-value
+        //Escribimos en el archivo desempaquetando cada par key-value
         size_t ataqueSize = ataque.first.size();
         out.write(reinterpret_cast<const char*>(&ataqueSize), sizeof(ataqueSize));
         out.write(ataque.first.c_str(), ataqueSize);
@@ -46,8 +46,8 @@ void PokemonInfo::serializar(ofstream& out) const {
     out.write(reinterpret_cast<char*>(const_cast<int*>(experienciaProximoNivel.data())), experienciaSize * sizeof(int));
 }
 
-//Deserializacion
-void PokemonInfo:: deserializar(ifstream& in){
+//Obtención de la información del Pokemon desde archivo
+void PokemonInfo:: descargarInfo(ifstream& in){
     //Tipo
     size_t tipoSize;
     in.read(reinterpret_cast<char*>(&tipoSize), sizeof(tipoSize));
