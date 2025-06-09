@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 #Nombre del Proyecto
-project(podekexProject1)
+project(project1)
 
 #Estandar de C++
 set(CMAKE_CXX_STANDARD 17)
@@ -11,10 +11,10 @@ set(CMAKE_CXX_STANDARD 17)
 file(GLOB SOURCES "src/*.cpp" "example/*.cpp")
 
 #Creación del ejecutable
-add_executable(pokedexProject1 ${SOURCES})
+add_executable(project1 ${SOURCES})
 
 #Directorio de los Headers (.h)
-target_include_directories(pokedexProject1 PRIVATE ${CMAKE_SOURCE_DIR}/include)
+target_include_directories(project1 PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
 #Carpeta de creación del ejecutable
-set_target_properties(pokedexProject1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set_target_properties(project1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)

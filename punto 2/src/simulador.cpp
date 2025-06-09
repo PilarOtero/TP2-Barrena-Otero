@@ -4,9 +4,9 @@
 #include <chrono>
 
 void Hangar::despegar(int dron){
-    //Zona derecha del dron - entre el y el de su izquierda
+    //Zona derecha del dron - entre él y el de su izquierda
     int der = (dron - 1 + CANTDRONES) % CANTDRONES; 
-    //Zona izquierda del dron - entre el y el de su derecha
+    //Zona izquierda del dron - entre él y el de su derecha
     int izq = dron;
     
     {
