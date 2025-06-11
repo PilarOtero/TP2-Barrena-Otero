@@ -22,6 +22,7 @@ struct Tarea {
 
 queue<Tarea> tareas;
 mutex mtx;
+mutex mtxImpresion;
 condition_variable cv;
 bool terminado = false; //sensores que terminaron de rportar sus tareas
 int tareasCompletadas = 0;
@@ -39,8 +40,11 @@ void sensor(int idSensorTarea) {
         {
         unique_lock<mutex> lg(mtx);   
         tareas.push(tareaReportada);
-        cout << "[SENSOR " << idSensorTarea << "] reporta " << tareaReportada.descripcion << endl;
         }  
+        {
+        lock_guard<mutex> lock(mtxImpresion);
+        cout << "[SENSOR " << idSensorTarea << "] reporta " << tareaReportada.descripcion << endl;
+        }
         //Notificar a los robots que hay una nueva tarea
         cv.notify_all();
     }
@@ -64,13 +68,22 @@ void robot(int idRobot) {
         if (!tareas.empty()) {
             Tarea tarea = tareas.front();
             tareas.pop();
+            ul.unlock();
+
+            {
+            lock_guard<mutex> lock(mtxImpresion);
             cout << "[ROBOT " << idRobot << "] procesando " << tarea.descripcion << endl;
+            }
             //Tiempo de procesamiento del robot de la tarea
             this_thread::sleep_for(chrono::milliseconds(250)); 
         }
         else if(terminado) {
+            ul.unlock();
+            {
+            lock_guard<mutex> lock(mtxImpresion);
             cout << "[ROBOT " << idRobot << " TERMINO DE PROCESAR SUS TAREAS]" << endl;
-            break;
+            }
+        break;
         }
     }
 }
