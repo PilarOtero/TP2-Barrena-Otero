@@ -30,7 +30,4 @@ class PokemonInfo {
         //Serializacion y deserializacion
         void cargarInfo(ofstream& out) const;   
         void descargarInfo(ifstream& in);
-        
-        //Destructor
-        ~PokemonInfo() = default;
 };

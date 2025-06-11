@@ -28,9 +28,6 @@ class Pokedex {
         //Carga y descarga de información al archivo
         void cargarInfo() const;   
         void descargarInfo();
-
-        //Destructor
-        ~Pokedex() = default;
 };      
 
 

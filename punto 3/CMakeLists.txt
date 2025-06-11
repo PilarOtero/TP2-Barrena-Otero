@@ -8,7 +8,7 @@ project(project3)
 set(CMAKE_CXX_STANDARD 17)
 
 #Archivos fuente 
-file(GLOB SOURCES "src/*.cpp" "example/*.cpp")
+file(GLOB SOURCES "example/*.cpp")
 
 #Creación del ejecutable
 add_executable(project3 ${SOURCES})

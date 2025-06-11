@@ -17,14 +17,7 @@ class Hangar{
         //Mutex para habilitar el acceso a la consola
         mutex habilitado;
     public:
-        //Constructor
-        Hangar() = default;
-        
         //Métodos
         void despegar(int dron);
         void simularDespegues(); 
-        
-        //Destructor
-        ~Hangar() = default;
-
 };

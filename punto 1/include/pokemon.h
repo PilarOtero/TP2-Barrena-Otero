@@ -29,9 +29,6 @@ class Pokemon {
         //Carga y descarga de información del Pokemon a archivo
         void cargarInfo(ofstream& out) const;   
         void descargarInfo(ifstream& in);
-
-        //Destructor
-        ~Pokemon() = default;
 };
 
 
