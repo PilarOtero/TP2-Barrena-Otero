@@ -22,9 +22,11 @@ struct Tarea {
 
 queue<Tarea> tareas;
 mutex mtx;
+// Mutex para la impresion de mensajes en consola sin superposición
 mutex mtxImpresion;
 condition_variable cv;
-bool terminado = false; //sensores que terminaron de rportar sus tareas
+//Sensores que terminaron de reportar sus tareas
+bool terminado = false; 
 int tareasCompletadas = 0;
 
 void sensor(int idSensorTarea) {
@@ -34,18 +36,19 @@ void sensor(int idSensorTarea) {
         
         Tarea tareaReportada;
         tareaReportada.idSensor = idSensorTarea;
-        tareaReportada.idTarea = i;
-        tareaReportada.descripcion = "Tarea " + to_string(i);
+        tareaReportada.idTarea = i + idSensorTarea * 10;
+        tareaReportada.descripcion = "Tarea " + to_string(tareaReportada.idTarea);
         
         {
-        unique_lock<mutex> lg(mtx);   
-        tareas.push(tareaReportada);
+        unique_lock<mutex> lg(mtx); 
+        //Se agrega la tarea a la cola de tareas  
+        tareas.push(tareaReportada );
         }  
         {
         lock_guard<mutex> lock(mtxImpresion);
         cout << "[SENSOR " << idSensorTarea << "] reporta " << tareaReportada.descripcion << endl;
         }
-        //Notificar a los robots que hay una nueva tarea
+        //Notificar a todos los robots que hay una nueva tarea
         cv.notify_all();
     }
     {
@@ -92,6 +95,7 @@ void robot(int idRobot) {
 int main(){
     vector<thread> robots;
     for (int i = 0; i < CANT_ROBOTS; i++){
+        //emplace_back agrega un nuevo elemento al vector de robots 
         robots.emplace_back(robot, i + 1);
     }
 
