@@ -68,14 +68,18 @@ Para compilar cualquier ejercicio:
 
 
 3. Crear la carpeta de compilación
+    ```bash
     mkdir build
     cd build
 
 4. Generar los archivos de compilación
+    ```bash
     cmake ..
 
 5. Compilar el proyecto
+    ```bash
     make
 
 6. Ejecutar el programa (reemplaza X por el número del ejercicio: 1, 2 o 3)
+    ```bash
     ./bin/projectX
