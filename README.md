@@ -67,15 +67,15 @@ Para compilar cualquier ejercicio:
    cd build
 
 
-# Crear la carpeta de compilación
+3. Crear la carpeta de compilación
     mkdir build
     cd build
 
-# Generar los archivos de compilación
+4. Generar los archivos de compilación
     cmake ..
 
-# Compilar el proyecto
+5. Compilar el proyecto
     make
 
-# Ejecutar el programa (reemplaza X por el número del ejercicio: 1, 2 o 3)
+6. Ejecutar el programa (reemplaza X por el número del ejercicio: 1, 2 o 3)
     ./bin/projectX
