@@ -1,3 +1,0 @@
-/home/pilarotero/Desktop/2 año/paradigmas de programacion/TP2_Barrena_Otero/Trabajo Practico/punto 2/build/CMakeFiles/project2.dir
-/home/pilarotero/Desktop/2 año/paradigmas de programacion/TP2_Barrena_Otero/Trabajo Practico/punto 2/build/CMakeFiles/edit_cache.dir
-/home/pilarotero/Desktop/2 año/paradigmas de programacion/TP2_Barrena_Otero/Trabajo Practico/punto 2/build/CMakeFiles/rebuild_cache.dir
