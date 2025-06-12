@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/project2.dir/example/main.cpp.o CMakeFiles/project2.dir/src/simulador.cpp.o -o bin/project2 
