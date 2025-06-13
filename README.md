@@ -8,7 +8,7 @@
 
 ## Introducción
 
-Este trabajo práctico tiene como objetivo la implementación y analisis de diferentes simulaciones que permiten la aplicacion de conceptos clave de programación en C++, tales como el uso de clases, archivos binarios, estructuras de datos, concurrencia y sincronización con threads.
+Este trabajo práctico tiene como objetivo la implementación y el analisis de diferentes simulaciones que permiten la aplicacion de conceptos clave de programación en C++, tales como el uso de clases, archivos binarios, estructuras de datos, concurrencia y sincronización con threads.
 
 Se desarrollaron tres ejercicios, cada uno de ellos abordando un problema distinto, utilizando una arquitectura modular con archivos fuente separados, headers y un sistema de compilación unificado mediante CMake. 
 ---
