@@ -8,9 +8,9 @@
 
 ## Introducción
 
-Este trabajo práctico tiene como objetivo implementar y analizar diferentes simulaciones que permiten aplicar conceptos clave de programación en C++, tales como el uso de clases, archivos binarios, estructuras de datos, concurrencia y sincronización con threads.
+Este trabajo práctico tiene como objetivo la implementación y analisis de diferentes simulaciones que permiten la aplicacion de conceptos clave de programación en C++, tales como el uso de clases, archivos binarios, estructuras de datos, concurrencia y sincronización con threads.
 
-Se desarrollaron tres ejercicios, cada uno abordando un problema distinto, utilizando una arquitectura modular con archivos fuente separados, headers y un sistema de compilación unificado mediante CMake. 
+Se desarrollaron tres ejercicios, cada uno de ellos abordando un problema distinto, utilizando una arquitectura modular con archivos fuente separados, headers y un sistema de compilación unificado mediante CMake. 
 ---
 
 ## Estructura del Proyecto
@@ -65,7 +65,7 @@ Para compilar cualquier ejercicio:
    ```bash
    cmake -S . -B build
 
-3. # Compilar el proyecto
+3. Compilar el proyecto
     ```bash
     cmake --build build
 
