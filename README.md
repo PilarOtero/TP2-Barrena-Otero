@@ -3,7 +3,6 @@
 **Integrantes**: Agustina Barrena, Pilar Otero  
 **Emails**: abarrena@udesa.edu.ar, potero@udesa.edu.ar  
 **Universidad**: Universidad de San Andrés – Departamento de Ingeniería
-
 **Link repositorio**: https://github.com/PilarOtero/TP2-Barrena-Otero.git
 
 ---
