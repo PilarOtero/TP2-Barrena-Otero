@@ -20,7 +20,7 @@ Los ejercicios 1 y 2 se encuentran organizado en subcarpetas con la siguiente es
 - `src/`: Implementación de las funcionalidades principales (clases y lógica).
 - `include/`: Archivos `.h` con definiciones de clases y métodos.
 - `build/`: Carpeta generada durante la compilación.
-- `CMakeLists.txt`: Script de compilación para cada ejercicio.
+- `CMakeLists.txt`: Script de compilación para cada ejercicio.\n
 En el caso del ejercicio 3, este presenta unicamente una carpeta example en conjuto con el archivo CMakeLists
 ---
 
