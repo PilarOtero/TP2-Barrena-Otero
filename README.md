@@ -9,6 +9,7 @@
 ## Introducción
 
 Este trabajo práctico tiene como objetivo la implementación y el analisis de diferentes simulaciones que permiten la aplicacion de conceptos clave de programación en C++, tales como el uso de clases, archivos binarios, estructuras de datos, concurrencia y sincronización con threads.
+
 Se desarrollaron tres ejercicios, cada uno de ellos abordando un problema distinto, utilizando una arquitectura modular con archivos fuente separados, headers y un sistema de compilación unificado mediante CMake. 
 ---
 
@@ -20,7 +21,8 @@ Los ejercicios 1 y 2 se encuentran organizado en subcarpetas con la siguiente es
 - `src/`: Implementación de las funcionalidades principales (clases y lógica).
 - `include/`: Archivos `.h` con definiciones de clases y métodos.
 - `build/`: Carpeta generada durante la compilación.
-- `CMakeLists.txt`: Script de compilación para cada ejercicio.\n
+- `CMakeLists.txt`: Script de compilación para cada ejercicio.
+
 En el caso del ejercicio 3, este presenta unicamente una carpeta example en conjuto con el archivo CMakeLists
 ---
 
