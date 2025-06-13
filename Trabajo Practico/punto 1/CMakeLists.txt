@@ -18,3 +18,10 @@ target_include_directories(project1 PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
 #Carpeta de creación del ejecutable
 set_target_properties(project1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+# Mostrar warnings al compilar (según compilador)
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(project1 PRIVATE -Wall -Wextra -Wpedantic)
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    target_compile_options(project1 PRIVATE /W4 /permissive-)
+endif()

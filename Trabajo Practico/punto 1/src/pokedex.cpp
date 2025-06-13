@@ -32,7 +32,7 @@ void Pokedex::mostrarInfo(const Pokemon& pokemon) const {
 
         const auto& experiencia = info.getExperienciaProximoNivel();
         cout << "EXPERIENCIA PROXIMO NIVEL " << endl;
-        for (int i = 0; i < experiencia.size(); i++){
+        for (size_t i = 0; i < experiencia.size(); i++){
             cout << "- " << experiencia[i] << endl;
         }
     }
@@ -90,7 +90,7 @@ void Pokedex::descargarInfo(){
 
     size_t size;
     in.read(reinterpret_cast<char*>(&size), sizeof(size));
-    for(int i = 0; i < size; ++i){
+    for(size_t i = 0; i < size; ++i){
         Pokemon pokemon;
         PokemonInfo info;
         //Deserializacion del Pokemon
