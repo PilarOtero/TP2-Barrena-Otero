@@ -15,7 +15,7 @@ Se desarrollaron tres ejercicios, cada uno de ellos abordando un problema distin
 
 ## Estructura del Proyecto
 
-Cada ejercicio se encuentra organizado en subcarpetas con la siguiente estructura:
+Los ejercicios 1 y 2 se encuentran organizado en subcarpetas con la siguiente estructura:
 
 - `example/`: Contiene el archivo `main.cpp` con las pruebas correspondientes.
 - `src/`: Implementación de las funcionalidades principales (clases y lógica).
@@ -23,6 +23,7 @@ Cada ejercicio se encuentra organizado en subcarpetas con la siguiente estructur
 - `build/`: Carpeta generada durante la compilación.
 - `CMakeLists.txt`: Script de compilación para cada ejercicio.
 
+En el caso del ejercicio 3, este presenta unicamente una carpeta example en conjuto con el archivo CMakeLists
 ---
 
 ## Ejercicio 1 – Pokedex
