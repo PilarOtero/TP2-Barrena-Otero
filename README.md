@@ -63,23 +63,16 @@ Para compilar cualquier ejercicio:
 
 2. Crear la carpeta de compilación y entrar:
    ```bash
-   mkdir build
-   cd build
+   cmake -S . -B build
 
-
-3. Crear la carpeta de compilación
+3. # Compilar el proyecto
     ```bash
-    mkdir build
-    cd build
+    cmake --build build
 
-4. Generar los archivos de compilación
+4. Ejecutar el programa
     ```bash
-    cmake ..
+    ./build/bin/project1
 
-5. Compilar el proyecto
+5. Ejecutar el programa (reemplazar X por el número del ejercicio: 1, 2 o 3)
     ```bash
-    make
-
-6. Ejecutar el programa (reemplaza X por el número del ejercicio: 1, 2 o 3)
-    ```bash
-    ./bin/projectX
+    ./build/bin/projectX
