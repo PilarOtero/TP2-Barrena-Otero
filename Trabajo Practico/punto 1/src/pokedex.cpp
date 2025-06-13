@@ -3,7 +3,7 @@
 //Constructores
 Pokedex::Pokedex() {};
 
-Pokedex::Pokedex(const string& fileNamePokedex): fileName("bin/" + fileNamePokedex) {};
+Pokedex::Pokedex(const string& fileNamePokedex): fileName("build/bin/" + fileNamePokedex) {};
 
 //Metodo para mostrar el nombre y tipo del Pokemon
 void Pokedex::mostrar(const Pokemon& pokemon) const {
