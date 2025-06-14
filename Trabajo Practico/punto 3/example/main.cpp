@@ -43,8 +43,8 @@ void sensor(int idSensorTarea) {
         unique_lock<mutex> lg(mtx); 
         //Se agrega la tarea a la cola de tareas  
         tareas.push(tareaReportada );
-        }  
-        {
+        
+        //Impresion del mensaje dentro del mismo scope para que no salga antes de que un robot pueda procesar la tarea
         lock_guard<mutex> lock(mtxImpresion);
         cout << "[SENSOR " << idSensorTarea << "] reporta " << tareaReportada.descripcion << endl;
         }
