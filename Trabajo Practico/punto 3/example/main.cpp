@@ -22,7 +22,7 @@ struct Tarea {
 
 queue<Tarea> tareas;
 mutex mtx;
-// Mutex para la impresion de mensajes en consola sin superposición
+// Mutex para la impresión de mensajes en consola sin superposición
 mutex mtxImpresion;
 condition_variable cv;
 //Sensores que terminaron de reportar sus tareas
@@ -31,7 +31,7 @@ int tareasCompletadas = 0;
 
 void sensor(int idSensorTarea) {
     for(int i = 1; i <= CANT_TAREAS; ++i){
-        //Tiempo de demora de generacion de una tarea
+        //Tiempo de demora de generación de una tarea
         this_thread::sleep_for(chrono::milliseconds(175));
         
         Tarea tareaReportada;
@@ -44,7 +44,7 @@ void sensor(int idSensorTarea) {
         //Se agrega la tarea a la cola de tareas  
         tareas.push(tareaReportada );
         
-        //Impresion del mensaje dentro del mismo scope para que no salga antes de que un robot pueda procesar la tarea
+        //Impresión del mensaje dentro del mismo scope para que no salga antes de que un robot pueda procesar la tarea
         lock_guard<mutex> lock(mtxImpresion);
         cout << "[SENSOR " << idSensorTarea << "] reporta " << tareaReportada.descripcion << endl;
         }
@@ -95,7 +95,7 @@ void robot(int idRobot) {
 int main(){
     vector<thread> robots;
     for (int i = 0; i < CANT_ROBOTS; i++){
-        //emplace_back agrega un nuevo elemento al vector de robots 
+        //emplace_back agrega un nuevo elemento al final del vector de robots 
         robots.emplace_back(robot, i + 1);
     }
 
