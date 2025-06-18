@@ -48,8 +48,8 @@ void sensor(int idSensorTarea) {
         lock_guard<mutex> lock(mtxImpresion);
         cout << "[SENSOR " << idSensorTarea << "] reporta " << tareaReportada.descripcion << endl;
         }
-        //Notificar a todos los robots que hay una nueva tarea
-        cv.notify_all();
+        //Notificar a un robot que hay una nueva tarea
+        cv.notify_one();
     }
     {
         unique_lock<mutex> lg(mtx);
